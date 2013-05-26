@@ -34,14 +34,17 @@
     </child>
   </object>
   <object class="GtkWindow" id="main_window">
+    <property name="app_paintable">True</property>
     <property name="can_focus">False</property>
+    <property name="events">GDK_POINTER_MOTION_MASK | GDK_BUTTON_PRESS_MASK | GDK_STRUCTURE_MASK</property>
     <property name="title" translatable="yes">Screenruler</property>
     <property name="default_width">440</property>
-    <property name="default_height">36</property>
+    <property name="default_height">320</property>
     <property name="type_hint">dialog</property>
     <property name="decorated">False</property>
     <property name="has_resize_grip">False</property>
     <signal name="button-press-event" handler="on_main_window_button_press_event" swapped="no"/>
+    <signal name="draw" handler="on_main_window_draw" swapped="no"/>
     <signal name="delete-event" handler="on_app_exit" swapped="no"/>
     <child>
       <object class="GtkEventBox" id="eventbox1">
