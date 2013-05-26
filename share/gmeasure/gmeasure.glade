@@ -51,15 +51,15 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="events">GDK_POINTER_MOTION_MASK | GDK_STRUCTURE_MASK</property>
+        <signal name="button-press-event" handler="on_main_window_button_press_event" swapped="no"/>
+        <signal name="draw" handler="on_main_window_draw" swapped="no"/>
         <signal name="enter-notify-event" handler="on_main_window_enter_notify_event" swapped="no"/>
         <signal name="leave-notify-event" handler="on_main_window_leave_notify_event" swapped="no"/>
         <signal name="motion-notify-event" handler="on_main_window_motion_notify_event" swapped="no"/>
         <child>
-          <object class="GtkLabel" id="label">
+          <object class="GtkDrawingArea" id="drawingarea">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Hello, world.</property>
-            <signal name="button-press-event" handler="on_main_window_button_press_event" swapped="no"/>
           </object>
         </child>
       </object>

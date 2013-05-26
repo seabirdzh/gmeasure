@@ -24,7 +24,7 @@ class Handler:
         Gtk.main_quit()
 
     def on_main_window_draw(self, window, cr):
-        cr.set_source_rgba(0.2, 0.2, 0.2, 0.8)
+        cr.set_source_rgba(0.2, 0.2, 0.2, 0.4)
         cr.set_operator(cairo.OPERATOR_SOURCE)
         cr.paint()
 
