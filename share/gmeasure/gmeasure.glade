@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.0 -->
+  <object class="GtkAboutDialog" id="aboutdialog">
+    <property name="can_focus">False</property>
+    <property name="border_width">5</property>
+    <property name="modal">True</property>
+    <property name="type_hint">dialog</property>
+    <property name="transient_for">main_window</property>
+    <property name="program_name">gmeasure</property>
+    <property name="version">1.0</property>
+    <property name="copyright" translatable="yes">Copyright © 2013 LiuLang</property>
+    <property name="comments" translatable="yes">gmeasure is a simple screenruler,
+designed to replace original screenruler in Debian, 
+which is written in Ruby-1.8, and no more updates.</property>
+    <property name="website">https://www.github.com/LiuLang</property>
+    <property name="authors">LiuLang&lt;gsushzhsosgsu@gmail.com&gt;</property>
+    <property name="logo">128.png</property>
+    <property name="license_type">gpl-3-0</property>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="aboutdialog-vbox1">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="aboutdialog-action_area1">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkMenu" id="label_menu">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <child>
-      <object class="GtkImageMenuItem" id="about_menuitem">
-        <property name="label">gtk-about</property>
-        <property name="use_action_appearance">False</property>
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="use_underline">True</property>
-        <property name="use_stock">True</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkSeparatorMenuItem" id="menuitem1">
-        <property name="use_action_appearance">False</property>
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-      </object>
-    </child>
     <child>
       <object class="GtkImageMenuItem" id="quit_menuitem">
         <property name="label">gtk-quit</property>
@@ -32,6 +54,64 @@
         <signal name="activate" handler="on_app_exit" swapped="no"/>
       </object>
     </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="menuitem1">
+        <property name="use_action_appearance">False</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="about_menuitem">
+        <property name="label">gtk-about</property>
+        <property name="use_action_appearance">False</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+        <signal name="activate" handler="show_about_dialog" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="background_color">
+        <property name="use_action_appearance">False</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Background Color</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_background_color_activate" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="number_color">
+        <property name="use_action_appearance">False</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Number Color</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_number_color_activate" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="line_color">
+        <property name="use_action_appearance">False</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Line Color</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_line_color_activate" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="mark_color">
+        <property name="use_action_appearance">False</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Mark Color</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_mark_color_activate" swapped="no"/>
+      </object>
+    </child>
   </object>
   <object class="GtkWindow" id="main_window">
     <property name="app_paintable">True</property>
@@ -40,28 +120,21 @@
     <property name="title" translatable="yes">Screenruler</property>
     <property name="default_width">440</property>
     <property name="default_height">320</property>
+    <property name="icon">128.png</property>
     <property name="type_hint">dialog</property>
     <property name="decorated">False</property>
     <property name="has_resize_grip">False</property>
     <signal name="button-press-event" handler="on_main_window_button_press_event" swapped="no"/>
     <signal name="draw" handler="on_main_window_draw" swapped="no"/>
+    <signal name="enter-notify-event" handler="on_main_window_enter_notify_event" swapped="no"/>
     <signal name="delete-event" handler="on_app_exit" swapped="no"/>
+    <signal name="motion-notify-event" handler="on_main_window_motion_notify_event" swapped="no"/>
+    <signal name="leave-notify-event" handler="on_main_window_leave_notify_event" swapped="no"/>
     <child>
-      <object class="GtkEventBox" id="eventbox1">
+      <object class="GtkDrawingArea" id="drawingarea">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="events">GDK_POINTER_MOTION_MASK | GDK_STRUCTURE_MASK</property>
-        <signal name="button-press-event" handler="on_main_window_button_press_event" swapped="no"/>
-        <signal name="draw" handler="on_main_window_draw" swapped="no"/>
-        <signal name="enter-notify-event" handler="on_main_window_enter_notify_event" swapped="no"/>
-        <signal name="leave-notify-event" handler="on_main_window_leave_notify_event" swapped="no"/>
-        <signal name="motion-notify-event" handler="on_main_window_motion_notify_event" swapped="no"/>
-        <child>
-          <object class="GtkDrawingArea" id="drawingarea">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-        </child>
+        <signal name="draw" handler="on_drawingarea_draw" swapped="no"/>
       </object>
     </child>
   </object>

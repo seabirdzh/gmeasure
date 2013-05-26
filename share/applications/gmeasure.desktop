@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Gmeasure
+GenericName=Gmeasure
+Comment=A simple screenruler
+Exec=gmeasure
+Icon=gmeasure
+Terminal=false
+Type=Application
+Categories=Application;Graphics;
