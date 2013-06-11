@@ -1,6 +1,8 @@
 #!/bin/sh
 
 # Generate deb package from source.
+# v1.5 - 2013.6.12
+# Fix the test() command error.
 # v1.4 - 2013.6.11
 # Simplify the operations.
 # v1.3 - 2013.6.7
@@ -23,7 +25,7 @@ usage() {
 
 DIR="fakeroot/"
 DEB="gmeasure.deb"
-if [ !-d $DIR ]; then
+if [ ! -d $DIR ]; then
 	echo 'Error: no such directory!!!'
 	usage
 	exit 1
