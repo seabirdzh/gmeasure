@@ -1,0 +1,1 @@
+share/doc/gmeasure/ChangeLog.txt

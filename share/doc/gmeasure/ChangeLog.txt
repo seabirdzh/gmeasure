@@ -1,1 +1,6 @@
+v1.1 - 2013.6.11
+Fixed website link error.
+Simplified the build processing.
+
 v1.0 - 2013.5.27
+Project inited

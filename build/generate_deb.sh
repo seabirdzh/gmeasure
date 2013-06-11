@@ -1,9 +1,12 @@
 #!/bin/sh
 
 # Generate deb package from source.
-# v1.3 - 2013.5.19
-# fixed: A space should be added after ! operate in test() command.
-#        else sh will throw an exception: unexpected operator.
+# v1.4 - 2013.6.11
+# Simplify the operations.
+# v1.3 - 2013.6.7
+# Add chown operate.
+# Change the usage, now no need to input fakeroot and package name, making
+#  it easier to use.
 # v1.2 - 2013.5.12
 # A second parameter added;
 # usage() added;
@@ -13,31 +16,20 @@
 # project inited.
 
 usage() {
-	echo "$0 fakeroot_of_package package_name"
-	echo 'This program needs root permission'
-	echo 'version 1.2'
+	echo "$0"
+	echo 'This program need root permission'
 }
 
-if [ $# -ne 2 ]; then
-	echo 'parameter needed'
-	usage
-	exit 1
-fi 
 
-DIR=$1
-DIR=${DIR%%/}
-if [ ! -d $DIR ]; then
+DIR="fakeroot/"
+DEB="gmeasure.deb"
+if [ !-d $DIR ]; then
 	echo 'Error: no such directory!!!'
 	usage
 	exit 1
 fi
 
-#DEB=${DIR%%/}.deb
-DEB=$2
-
-
 cd $DIR
-
 chown -R root:root .
 find usr -type f | xargs chmod a+r
 find usr -type d | xargs chmod a+rx
@@ -58,6 +50,12 @@ dpkg -b $DIR $DEB
 echo 'DEB generated...'
 
 rm -rf $DIR
-echo $DIR cleaned
+echo "$DIR cleaned"
+
+# That DEB package needs to be chowned to current user.
+OWNER=$(stat -c%u "$0")
+GROUP=$(stat -c%g "$0")
+chown $OWNER:$GROUP $DEB
+echo 'file owner and group owner changed..'
 
 mv $DEB ../
