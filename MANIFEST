@@ -6,8 +6,6 @@ gmeasure/Handler.py
 gmeasure/__init__.py
 share/applications/gmeasure.desktop
 share/gmeasure/128.png
-share/gmeasure/256.png
-share/gmeasure/64.png
 share/gmeasure/gmeasure.glade
 share/icons/hicolor/128x128/apps/gmeasure.png
 share/icons/hicolor/256x256/apps/gmeasure.png
