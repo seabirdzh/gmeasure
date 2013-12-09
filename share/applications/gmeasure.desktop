@@ -2,7 +2,7 @@
 Name=Gmeasure
 GenericName=Gmeasure
 Comment=A simple screenruler
-Exec=gmeasure
+Exec=gmeasure-bin
 Icon=gmeasure
 Terminal=false
 Type=Application
